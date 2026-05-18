@@ -6,3 +6,4 @@ outputs/
 .idea/
 config/llm_config.local.json
 contracts/*.generated.json
+.env

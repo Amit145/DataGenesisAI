@@ -71,9 +71,36 @@ python -m src.cli build-contract --input-dir inputs/insurance_claims --output-co
 python -m src.cli generate --contract contracts/insurance_claims_contract.generated.json --records 1000 --output outputs/demo
 ```
 
+To build the contract using the configured LLM:
+
+```powershell
+python -m src.cli llm-build-contract --input-dir inputs/insurance_claims --output-contract contracts/insurance_claims_contract.llm.generated.json --config config/llm_config.local.json
+python -m src.cli generate --contract contracts/insurance_claims_contract.llm.generated.json --records 1000 --output outputs/llm_demo
+```
+
 ## LLM configuration
 
 Copy `config/llm_config.example.json` to `config/llm_config.local.json` when adding a real LLM provider. Store API keys in environment variables, not in the repo.
+
+PowerShell setup:
+
+```powershell
+setx GEMINI_API_KEY "your_api_key_here"
+```
+
+Restart PyCharm or the terminal after setting the key. Then test:
+
+```powershell
+python -m src.cli test-llm --config config/llm_config.local.json
+```
+
+If your IDE or Codex shell cannot see the environment variable, create a local `.env` file:
+
+```text
+GEMINI_API_KEY=your_api_key_here
+```
+
+`.env` is ignored by Git.
 
 Do not publish this repository publicly before internal IP/legal review.
 
