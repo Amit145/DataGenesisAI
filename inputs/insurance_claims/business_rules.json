@@ -1,0 +1,28 @@
+{
+  "rules": [
+    {
+      "name": "policy_requires_customer",
+      "description": "Every policy must reference an existing customer."
+    },
+    {
+      "name": "claim_requires_policy",
+      "description": "Every claim must reference an existing policy."
+    },
+    {
+      "name": "payment_requires_claim",
+      "description": "Every payment must reference an existing claim."
+    },
+    {
+      "name": "claim_after_policy_start",
+      "description": "Claim date must be on or after the policy start date."
+    },
+    {
+      "name": "payment_after_claim",
+      "description": "Payment date must be on or after the claim date."
+    },
+    {
+      "name": "fraud_threshold",
+      "description": "A claim is fraud flagged when fraud_score is greater than or equal to 0.75."
+    }
+  ]
+}

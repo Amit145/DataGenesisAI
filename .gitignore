@@ -1,0 +1,8 @@
+.venv/
+__pycache__/
+*.pyc
+outputs/
+.pytest_cache/
+.idea/
+config/llm_config.local.json
+contracts/*.generated.json

@@ -1,0 +1,20 @@
+{
+  "test_cases": [
+    {
+      "name": "all_foreign_keys_resolve",
+      "description": "All generated foreign keys must point to records that exist."
+    },
+    {
+      "name": "temporal_order_is_valid",
+      "description": "Policy, claim, and payment dates must follow the expected lifecycle order."
+    },
+    {
+      "name": "fraud_flag_is_derived",
+      "description": "Fraud flag must equal whether fraud_score is greater than or equal to the configured threshold."
+    },
+    {
+      "name": "requested_volume_is_met",
+      "description": "Generated output should match the requested base record volume."
+    }
+  ]
+}

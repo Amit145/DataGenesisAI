@@ -1,0 +1,55 @@
+{
+  "domain": "insurance_claims",
+  "tables": [
+    {
+      "name": "customers",
+      "description": "Insurance customers or policyholders.",
+      "columns": [
+        {"name": "customer_id", "type": "string", "primary_key": true},
+        {"name": "first_name", "type": "string"},
+        {"name": "last_name", "type": "string"},
+        {"name": "email", "type": "string"},
+        {"name": "state", "type": "string"},
+        {"name": "created_date", "type": "date"}
+      ]
+    },
+    {
+      "name": "policies",
+      "description": "Insurance policies owned by customers.",
+      "columns": [
+        {"name": "policy_id", "type": "string", "primary_key": true},
+        {"name": "customer_id", "type": "string", "foreign_key": "customers.customer_id"},
+        {"name": "policy_type", "type": "category"},
+        {"name": "policy_start_date", "type": "date"},
+        {"name": "policy_end_date", "type": "date"},
+        {"name": "premium_amount", "type": "decimal"},
+        {"name": "status", "type": "category"}
+      ]
+    },
+    {
+      "name": "claims",
+      "description": "Insurance claims submitted against policies.",
+      "columns": [
+        {"name": "claim_id", "type": "string", "primary_key": true},
+        {"name": "policy_id", "type": "string", "foreign_key": "policies.policy_id"},
+        {"name": "claim_date", "type": "date"},
+        {"name": "claim_amount", "type": "decimal"},
+        {"name": "claim_type", "type": "category"},
+        {"name": "fraud_score", "type": "decimal"},
+        {"name": "is_fraud_flagged", "type": "boolean"},
+        {"name": "status", "type": "category"}
+      ]
+    },
+    {
+      "name": "payments",
+      "description": "Payments made against claims.",
+      "columns": [
+        {"name": "payment_id", "type": "string", "primary_key": true},
+        {"name": "claim_id", "type": "string", "foreign_key": "claims.claim_id"},
+        {"name": "payment_date", "type": "date"},
+        {"name": "payment_amount", "type": "decimal"},
+        {"name": "payment_method", "type": "category"}
+      ]
+    }
+  ]
+}

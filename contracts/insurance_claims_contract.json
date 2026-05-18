@@ -1,0 +1,73 @@
+{
+  "domain": "insurance_claims",
+  "seed": 20260518,
+  "source_inputs": [
+    "inputs/insurance_claims/schema.json",
+    "inputs/insurance_claims/business_rules.json",
+    "inputs/insurance_claims/domain_knowledge.md",
+    "inputs/insurance_claims/test_cases.json"
+  ],
+  "entities": {
+    "customers": {
+      "primary_key": "customer_id"
+    },
+    "policies": {
+      "primary_key": "policy_id"
+    },
+    "claims": {
+      "primary_key": "claim_id"
+    },
+    "payments": {
+      "primary_key": "payment_id"
+    }
+  },
+  "relationships": [
+    {
+      "from": "policies.customer_id",
+      "to": "customers.customer_id",
+      "cardinality": "many_to_one"
+    },
+    {
+      "from": "claims.policy_id",
+      "to": "policies.policy_id",
+      "cardinality": "many_to_one"
+    },
+    {
+      "from": "payments.claim_id",
+      "to": "claims.claim_id",
+      "cardinality": "many_to_one"
+    }
+  ],
+  "rules": [
+    {
+      "name": "claim_after_policy_start",
+      "expression": "claims.claim_date >= policies.policy_start_date"
+    },
+    {
+      "name": "payment_after_claim",
+      "expression": "payments.payment_date >= claims.claim_date"
+    },
+    {
+      "name": "fraud_threshold",
+      "expression": "claims.is_fraud_flagged == (claims.fraud_score >= 0.75)"
+    }
+  ],
+  "validations": [
+    {
+      "name": "referential_integrity",
+      "required": true
+    },
+    {
+      "name": "temporal_integrity",
+      "required": true
+    },
+    {
+      "name": "fraud_rule_consistency",
+      "required": true
+    },
+    {
+      "name": "requested_volume_is_met",
+      "required": true
+    }
+  ]
+}

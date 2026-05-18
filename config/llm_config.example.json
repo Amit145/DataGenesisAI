@@ -1,0 +1,9 @@
+{
+  "provider": "openai",
+  "model": "gpt-4.1-mini",
+  "api_key_env": "OPENAI_API_KEY",
+  "temperature": 0.1,
+  "max_output_tokens": 8000,
+  "mode": "contract_builder",
+  "notes": "Copy this file to llm_config.local.json and set provider/model/env var as needed. Do not commit API keys."
+}
